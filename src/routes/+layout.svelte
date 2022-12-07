@@ -20,7 +20,7 @@
     let isSideNavOpen = false;
   </script>
   
-  <Header company="mtc" platformName="patscenario" bind:isSideNavOpen>
+  <Header company="mtc" platformName="patscenario" bind:isSideNavOpen style="background-color=#fff">
     <svelte:fragment slot="skip-to-content">
       <SkipToContent />
     </svelte:fragment>
@@ -61,4 +61,5 @@
       </Row>
     </Grid>
   </Content>
+  
   
