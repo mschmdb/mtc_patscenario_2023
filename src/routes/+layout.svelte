@@ -24,7 +24,7 @@
     <svelte:fragment slot="skip-to-content">
       <SkipToContent />
     </svelte:fragment>
-    <HeaderNav>
+    <!-- <HeaderNav>
       <HeaderNavItem href="/" text="Link 1" />
       <HeaderNavItem href="/" text="Link 2" />
       <HeaderNavItem href="/" text="Link 3" />
@@ -34,7 +34,7 @@
         <HeaderNavItem href="/" text="Link 3" />
       </HeaderNavMenu>
       <HeaderNavItem href="/" text="Link 4" />
-    </HeaderNav>
+    </HeaderNav> -->
   </Header>
   
   <SideNav bind:isOpen={isSideNavOpen} rail>
