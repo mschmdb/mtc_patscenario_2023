@@ -6,6 +6,8 @@
      import { Accordion, AccordionItem } from "carbon-components-svelte";
      import { Toggle } from "carbon-components-svelte";
      import { Button } from "carbon-components-svelte";
+     import { DataTable, Link } from "carbon-components-svelte";
+     import Launch from "carbon-icons-svelte/lib/Launch.svelte";
 
 
 
@@ -21,22 +23,22 @@
     // Input fields Config
     $: uip_country_manufactured = '';
     $: selectedIds = "";
-    $: uip_country_manufactured_relocation = ""
-    $: uip_countries_sales_opportunities = ""
-    $: uip_translation_fee = 0.15
-    $: uip_pages = 22
-    $: uip_drawings = 2
-    $: uip_claims = 12
-    $: uip_words = 15000
-    $: uip_words_claims = 2275
-    $: uip_basic_fee = 800
-    $: uip_quick_examination = 750
-    $: uip_normal_examination = 1000
-    $: uip_extended_examination = 1250
-    $: uip_relocated_country_infringements = false
-    $: uip_countries_sales_opportunities_represented_toggle = false
-    $: uip_countries_sales_opportunities_future_toggle = false
-    $: uip_countries_sales_opportunities_enforcing_toggle = false
+    $: uip_country_manufactured_relocation = "";
+    $: uip_countries_sales_opportunities = "";
+    $: uip_translation_fee = 0.15;
+    $: uip_pages = 22;
+    $: uip_drawings = 2;
+    $: uip_claims = 12;
+    $: uip_words = 15000;
+    $: uip_words_claims = 2275;
+    $: uip_basic_fee = 800;
+    $: uip_quick_examination = 750;
+    $: uip_normal_examination = 1000;
+    $: uip_extended_examination = 1250;
+    $: uip_relocated_country_infringements = false;
+    $: uip_countries_sales_opportunities_represented_toggle = false;
+    $: uip_countries_sales_opportunities_future_toggle = false;
+    $: uip_countries_sales_opportunities_enforcing_toggle = false;
     
 
     //Put Input Fields into Array 'userval' after Submit
@@ -63,16 +65,20 @@
             uip_countries_sales_opportunities_future_toggle:uip_countries_sales_opportunities_future_toggle,
             uip_countries_sales_opportunities_enforcing_toggle:uip_countries_sales_opportunities_enforcing_toggle
         }
-        open = false,
+       
         userval = [thisPatScen, ...userval]
-        console.log(userval)
-        console.log(open)
+       
     }
-console.log(userval)
-console.log(values)
+// console.log(userval)
+// console.log(values)
 
+
+
+
+//building the array for the multiselect-fields
 const transformedvalues = values.map(value => {return {id: value.CountryShort, text: value.Country}});
-console.log(transformedvalues)
+const transformedvaluesForTable = values.map(value => {return {id: value.CountryShort, name: value.Country, filing_fee: value.Filing_Fee, claim_fee: value.Claim_Fee, year_8: value.year_8}});
+console.log(transformedvaluesForTable)
 </script>
 
 <div class="container m-8">
@@ -136,5 +142,32 @@ console.log(transformedvalues)
         <br><br>
         {JSON.stringify(userval)}
     </form>
-    
+    <DataTable
+  headers={[
+    { key: "name", value: "Country" },
+    { key: "filing_fee", value: "Filing Fee" },
+    { key: "claim_fee", value: "Claim Fee" },
+    { key: "year_8", value: "Year 8" },
+  ]}
+  rows={transformedvaluesForTable}
+>       
+  <svelte:fragment slot="cell-header" let:header>
+    {#if header.key === "port"}
+      {header.value} (network)
+    {:else}
+      {header.value}
+    {/if}
+  </svelte:fragment>
+  <svelte:fragment slot="cell" let:row let:cell>
+    {#if cell.key === "rule" && cell.value === "Round robin"}
+      <Link
+        icon={Launch}
+        href="https://en.wikipedia.org/wiki/Round-robin_DNS"
+        target="_blank">{cell.value}</Link
+      >
+    {:else}
+      {cell.value}
+    {/if}
+  </svelte:fragment>
+</DataTable>
     </div>
