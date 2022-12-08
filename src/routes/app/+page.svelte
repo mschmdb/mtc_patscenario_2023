@@ -69,7 +69,10 @@
         console.log(open)
     }
 console.log(userval)
-console.log(data)
+console.log(values)
+
+const transformedvalues = values.map(value => {return {id: value.CountryShort, text: value.Country}});
+console.log(transformedvalues)
 </script>
 
 <div class="container m-8">
@@ -100,11 +103,7 @@ console.log(data)
             titleText="In which countries is your product manufactured?"
             label=""
             name="uip_country_manufactured"
-            items={[
-                { id: "Germany", text: "Germany", value:"Germany" },
-                { id: "Australia", text: "Australia" },
-                { id: "UK", text: "United Kingdom (EP)" },
-            ]}
+            items={transformedvalues}
 
         />
         <MultiSelect
@@ -112,11 +111,7 @@ console.log(data)
             titleText="Can the manufacturing site be quickly relocated to other countries? In which?"
             label=""
             name="uip_country_manufactured_relocation"
-            items={[
-                { id: "Germany", text: "Germany", value:"Germany" },
-                { id: "Australia", text: "Australia" },
-                { id: "UK", text: "United Kingdom (EP)" },
-            ]}
+            items={transformedvalues}
 
         />
         <Toggle name="uip_relocated_country_infringements" 
@@ -126,11 +121,7 @@ console.log(data)
             titleText="In which countries do you see your greatest sales opportunities?"
             label=""
             name="uip_countries_sales_opportunities"
-            items={[
-                { id: "Germany", text: "Germany", value:"Germany" },
-                { id: "Australia", text: "Australia" },
-                { id: "UK", text: "United Kingdom (EP)" },
-            ]}
+            items={transformedvalues}
 
         />
         <Toggle name="uip_countries_sales_opportunities_represented_toggle" 
