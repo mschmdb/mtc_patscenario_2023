@@ -20,7 +20,7 @@
     let isSideNavOpen = false;
   </script>
   
-  <Header company="mtc" platformName="patscenario" bind:isSideNavOpen style="background-color=#fff">
+  <Header company="mtc" platformName="patscenario" bind:isSideNavOpen style="background-color=#fff" persistentHamburgerMenu={true}>
     <svelte:fragment slot="skip-to-content">
       <SkipToContent />
     </svelte:fragment>
