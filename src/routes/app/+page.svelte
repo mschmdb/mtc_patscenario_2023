@@ -20,6 +20,8 @@
     const values = Object.values(data);
     let countries = values
     let userval = ""
+    //Show Results?
+    let showResults = false;
     // Input fields Config
     $: uip_country_manufactured = '';
     $: selectedIds = "";
@@ -65,10 +67,12 @@
             uip_countries_sales_opportunities_future_toggle:uip_countries_sales_opportunities_future_toggle,
             uip_countries_sales_opportunities_enforcing_toggle:uip_countries_sales_opportunities_enforcing_toggle
         }
-       
+        showResults = true;
         userval = [thisPatScen, ...userval]
        
     }
+
+    
 // console.log(userval)
 // console.log(values)
 
@@ -142,32 +146,34 @@ console.log(transformedvaluesForTable)
         <br><br>
         {JSON.stringify(userval)}
     </form>
-    <DataTable
-  headers={[
-    { key: "name", value: "Country" },
-    { key: "filing_fee", value: "Filing Fee" },
-    { key: "claim_fee", value: "Claim Fee" },
-    { key: "year_8", value: "Year 8" },
-  ]}
-  rows={transformedvaluesForTable}
->       
-  <svelte:fragment slot="cell-header" let:header>
-    {#if header.key === "port"}
-      {header.value} (network)
-    {:else}
-      {header.value}
+    {#if showResults}
+        <DataTable pageSize=0
+            headers={[
+                { key: "name", value: "Country" },
+                { key: "filing_fee", value: "Filing Fee" },
+                { key: "claim_fee", value: "Claim Fee" },
+                { key: "year_8", value: "Year 8" },
+            ]}
+            rows={transformedvaluesForTable}
+            >       
+            <svelte:fragment slot="cell-header" let:header>
+                {#if header.key === "port"}
+                {header.value} (network)
+                {:else}
+                {header.value}
+                {/if}
+            </svelte:fragment>
+            <svelte:fragment slot="cell" let:row let:cell>
+                {#if cell.key === "rule" && cell.value === "Round robin"}
+                <Link
+                    icon={Launch}
+                    href="https://en.wikipedia.org/wiki/Round-robin_DNS"
+                    target="_blank">{cell.value}</Link
+                >
+                {:else}
+                {cell.value}
+                {/if}
+            </svelte:fragment>
+        </DataTable>
     {/if}
-  </svelte:fragment>
-  <svelte:fragment slot="cell" let:row let:cell>
-    {#if cell.key === "rule" && cell.value === "Round robin"}
-      <Link
-        icon={Launch}
-        href="https://en.wikipedia.org/wiki/Round-robin_DNS"
-        target="_blank">{cell.value}</Link
-      >
-    {:else}
-      {cell.value}
-    {/if}
-  </svelte:fragment>
-</DataTable>
     </div>
