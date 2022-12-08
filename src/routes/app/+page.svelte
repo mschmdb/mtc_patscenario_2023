@@ -144,7 +144,7 @@ console.log(transformedvaluesForTable)
         <Button kind="secondary" type="submit" style="margin-top:30px; background-color:#890c58">Submit</Button>
 
         <br><br>
-        {JSON.stringify(userval)}
+        
     </form>
     {#if showResults}
         <DataTable pageSize=0
@@ -176,4 +176,6 @@ console.log(transformedvaluesForTable)
             </svelte:fragment>
         </DataTable>
     {/if}
+    {JSON.stringify(userval)}
     </div>
+    
