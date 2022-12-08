@@ -5,6 +5,7 @@
      import { NumberInput } from "carbon-components-svelte";
      import { Accordion, AccordionItem } from "carbon-components-svelte";
      import { Toggle } from "carbon-components-svelte";
+     import { Button } from "carbon-components-svelte";
 
 
 
@@ -138,7 +139,10 @@ console.log(data)
         labelText="Do you want to work on these markets in the future?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_future_toggle} />
         <Toggle name="uip_countries_sales_opportunities_enforcing_toggle" 
         labelText="Are you able/do you want to seriously enforce your rights in these countries?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_enforcing_toggle} />
-        <button>submit</button><br>
+
+        <Button kind="secondary" type="submit" style="margin-top:30px">Submit</Button>
+
+        <br><br>
         {JSON.stringify(userval)}
     </form>
     
