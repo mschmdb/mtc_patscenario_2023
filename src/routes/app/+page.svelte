@@ -140,7 +140,7 @@ console.log(data)
         <Toggle name="uip_countries_sales_opportunities_enforcing_toggle" 
         labelText="Are you able/do you want to seriously enforce your rights in these countries?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_enforcing_toggle} />
 
-        <Button kind="secondary" type="submit" style="margin-top:30px">Submit</Button>
+        <Button kind="secondary" type="submit" style="margin-top:30px; background-color:#890c58">Submit</Button>
 
         <br><br>
         {JSON.stringify(userval)}
