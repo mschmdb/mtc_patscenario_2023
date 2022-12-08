@@ -56,8 +56,8 @@ console.log(userval)
 
         <MultiSelect
             bind:selectedIds
-            titleText=""
-            label="In which countries is your product manufactured?"
+            titleText="In which countries is your product manufactured?"
+            label=""
             name="fele"
             items={[
                 { id: "Germany", text: "Germany", value:"Germany" },
