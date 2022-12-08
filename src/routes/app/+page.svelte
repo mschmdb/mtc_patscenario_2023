@@ -3,6 +3,9 @@
      import { MultiSelect } from "carbon-components-svelte";
      import { TextInput } from "carbon-components-svelte";
      import { NumberInput } from "carbon-components-svelte";
+     import { Accordion, AccordionItem } from "carbon-components-svelte";
+     import { Toggle } from "carbon-components-svelte";
+
 
 
 	
@@ -12,13 +15,13 @@
 
     //Convert Data
     const values = Object.values(data);
-    let Country = '';
-    $: e = ""
     let countries = values
     let userval = ""
     // Input fields Config
+    $: uip_country_manufactured = '';
     $: selectedIds = "";
-    $: selectedValues = ""
+    $: uip_country_manufactured_relocation = ""
+    $: uip_countries_sales_opportunities = ""
     $: uip_translation_fee = 0.15
     $: uip_pages = 22
     $: uip_drawings = 2
@@ -29,14 +32,20 @@
     $: uip_quick_examination = 750
     $: uip_normal_examination = 1000
     $: uip_extended_examination = 1250
+    $: uip_relocated_country_infringements = false
+    $: uip_countries_sales_opportunities_represented_toggle = false
+    $: uip_countries_sales_opportunities_future_toggle = false
+    $: uip_countries_sales_opportunities_enforcing_toggle = false
     
 
     //Put Input Fields into Array 'userval' after Submit
     function submitForm() {
-       
+        
         const thisPatScen = {
             id: Math.random().toString(),
-            Country: selectedIds.toString(),
+            uip_country_manufactured: uip_country_manufactured.toString(),
+            uip_country_manufactured_relocation:uip_country_manufactured_relocation.toString(),
+            uip_countries_sales_opportunities:uip_countries_sales_opportunities.toString(),
             uip_pages: uip_pages,
             uip_translation_fee:uip_translation_fee,
             uip_pages:uip_pages,
@@ -47,15 +56,23 @@
             uip_basic_fee:uip_basic_fee,
             uip_quick_examination:uip_quick_examination,
             uip_normal_examination:uip_normal_examination,
-            uip_extended_examination:uip_extended_examination
+            uip_extended_examination:uip_extended_examination,
+            uip_relocated_country_infringements:uip_relocated_country_infringements,
+            uip_countries_sales_opportunities_represented_toggle:uip_countries_sales_opportunities_represented_toggle,
+            uip_countries_sales_opportunities_future_toggle:uip_countries_sales_opportunities_future_toggle,
+            uip_countries_sales_opportunities_enforcing_toggle:uip_countries_sales_opportunities_enforcing_toggle
         }
+        open = false,
         userval = [thisPatScen, ...userval]
         console.log(userval)
+        console.log(open)
     }
 console.log(userval)
+console.log(data)
 </script>
 
 <div class="container m-8">
+
     <h1 class="text-2xl">Patscenario</h1>
     
     <form on:submit|preventDefault={submitForm}>
@@ -78,17 +95,49 @@ console.log(userval)
         <h3 style="margin-bottom:20px; margin-top:20px">Country Data</h3>
 
         <MultiSelect
-            bind:selectedIds
+            bind:selectedIds={uip_country_manufactured}
             titleText="In which countries is your product manufactured?"
             label=""
-            name="fele"
+            name="uip_country_manufactured"
             items={[
                 { id: "Germany", text: "Germany", value:"Germany" },
                 { id: "Australia", text: "Australia" },
                 { id: "UK", text: "United Kingdom (EP)" },
             ]}
 
-            />
+        />
+        <MultiSelect
+            bind:selectedIds={uip_country_manufactured_relocation}
+            titleText="Can the manufacturing site be quickly relocated to other countries? In which?"
+            label=""
+            name="uip_country_manufactured_relocation"
+            items={[
+                { id: "Germany", text: "Germany", value:"Germany" },
+                { id: "Australia", text: "Australia" },
+                { id: "UK", text: "United Kingdom (EP)" },
+            ]}
+
+        />
+        <Toggle name="uip_relocated_country_infringements" 
+        labelText="Can you track patent infringements in the country?" labelA="No" labelB="Yes" bind:toggled={uip_relocated_country_infringements} />
+        <MultiSelect
+            bind:selectedIds={uip_countries_sales_opportunities}
+            titleText="In which countries do you see your greatest sales opportunities?"
+            label=""
+            name="uip_countries_sales_opportunities"
+            items={[
+                { id: "Germany", text: "Germany", value:"Germany" },
+                { id: "Australia", text: "Australia" },
+                { id: "UK", text: "United Kingdom (EP)" },
+            ]}
+
+        />
+        <Toggle name="uip_countries_sales_opportunities_represented_toggle" 
+        labelText="Are you already represented in these markets?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_represented_toggle} />
+        <Toggle name="uip_countries_sales_opportunities_future_toggle" 
+        labelText="Do you want to work on these markets in the future?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_future_toggle} />
+        <Toggle name="uip_countries_sales_opportunities_enforcing_toggle" 
+        labelText="Are you able/do you want to seriously enforce your rights in these countries?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_enforcing_toggle} />
         <button>submit</button><br>
         {JSON.stringify(userval)}
     </form>
