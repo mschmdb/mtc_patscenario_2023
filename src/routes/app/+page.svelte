@@ -41,8 +41,8 @@
     $: uip_countries_sales_opportunities_represented_toggle = false;
     $: uip_countries_sales_opportunities_future_toggle = false;
     $: uip_countries_sales_opportunities_enforcing_toggle = false;
-    
-
+    $: dynamic_table_rows = '';
+    $: chosencountries = [];
     //Put Input Fields into Array 'userval' after Submit
     function submitForm() {
         
@@ -69,7 +69,17 @@
         }
         showResults = true;
         userval = [thisPatScen, ...userval]
-       
+        chosencountries = userval.map(value => {return {CountryShort: value.uip_country_manufactured}});
+        console.log("ChosenC",chosencountries)
+
+
+    }
+    //  Filter the contents of chosen countries for Table display
+    function filterTable(arr, filterId) 
+    {
+    return [...arr.filter(obj => 
+    filterId && filterId.CountryShort && filterId.CountryShort.split(",").includes(obj.id))];
+
     }
 
     
@@ -81,8 +91,9 @@
 
 //building the array for the multiselect-fields
 const transformedvalues = values.map(value => {return {id: value.CountryShort, text: value.Country}});
-const transformedvaluesForTable = values.map(value => {return {id: value.CountryShort, name: value.Country, filing_fee: value.Filing_Fee, claim_fee: value.Claim_Fee, year_8: value.year_8}});
-console.log(transformedvaluesForTable)
+const transformedvaluesForTable = values.map(value => {return {id: value.CountryShort, name: value.Country, filing_fee: value.Filing_Fee, claim_fee: value.Claim_Fee, year_8: value.year_8, sum: value.Claim_Fee+value.Filing_Fee+value.year_8}});
+console.log("Tabledata",transformedvaluesForTable)
+
 </script>
 
 <div class="container m-8">
@@ -148,34 +159,21 @@ console.log(transformedvaluesForTable)
     </form>
     {#if showResults}
         <DataTable pageSize=0
+            title="Cumulated Costs"
+            description="Cumulated costs based on your choices."
             headers={[
                 { key: "name", value: "Country" },
                 { key: "filing_fee", value: "Filing Fee" },
                 { key: "claim_fee", value: "Claim Fee" },
                 { key: "year_8", value: "Year 8" },
+                { key: "sum", value: "Sum" },
             ]}
-            rows={transformedvaluesForTable}
+            rows={filterTable(transformedvaluesForTable, chosencountries[0])}
             >       
-            <svelte:fragment slot="cell-header" let:header>
-                {#if header.key === "port"}
-                {header.value} (network)
-                {:else}
-                {header.value}
-                {/if}
-            </svelte:fragment>
-            <svelte:fragment slot="cell" let:row let:cell>
-                {#if cell.key === "rule" && cell.value === "Round robin"}
-                <Link
-                    icon={Launch}
-                    href="https://en.wikipedia.org/wiki/Round-robin_DNS"
-                    target="_blank">{cell.value}</Link
-                >
-                {:else}
-                {cell.value}
-                {/if}
-            </svelte:fragment>
+           
+            
         </DataTable>
     {/if}
-    {JSON.stringify(userval)}
+    <!-- {JSON.stringify(userval)} -->
     </div>
     
