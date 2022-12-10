@@ -21,7 +21,8 @@
     let countries = values
     let userval = ""
     //Show Results?
-    let showResults = false;
+    $: showResults = false;
+    $: editForm = true;
     // Input fields Config
     $: uip_country_manufactured = '';
     $: selectedIds = "";
@@ -68,6 +69,7 @@
             uip_countries_sales_opportunities_enforcing_toggle:uip_countries_sales_opportunities_enforcing_toggle
         }
         showResults = true;
+        editForm = false;
         userval = [thisPatScen, ...userval]
         chosencountries = userval.map(value => {return {CountryShort: value.uip_country_manufactured}});
         console.log("ChosenC",chosencountries)
@@ -99,7 +101,7 @@ console.log("Tabledata",transformedvaluesForTable)
 <div class="container m-8">
 
     <h1 class="text-2xl">Patscenario</h1>
-    
+    {#if editForm}
     <form on:submit|preventDefault={submitForm}>
         <h3 style="margin-bottom:30px">Base Config</h3>
             <NumberInput name="uip_translation_fee" label="Translation Fees in € / Word" bind:value={uip_translation_fee} step={0.01} />
@@ -157,7 +159,9 @@ console.log("Tabledata",transformedvaluesForTable)
         <br><br>
         
     </form>
-    {#if showResults}
+    {/if}
+    {#if showResults == true || editForm == false}
+    <h3 style="margin-bottom:30px">Results</h3>
         <DataTable pageSize=0
             title="Cumulated Costs"
             description="Cumulated costs based on your choices."
@@ -173,6 +177,8 @@ console.log("Tabledata",transformedvaluesForTable)
            
             
         </DataTable>
+        <Button on:click={() => (editForm = true, showResults=false)}>Edit Results</Button>
+
     {/if}
     <!-- {JSON.stringify(userval)} -->
     </div>
