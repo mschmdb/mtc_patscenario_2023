@@ -8,6 +8,7 @@
      import { Button } from "carbon-components-svelte";
      import { DataTable, Link } from "carbon-components-svelte";
      import Launch from "carbon-icons-svelte/lib/Launch.svelte";
+     
 
 
 
@@ -24,10 +25,10 @@
     $: showResults = false;
     $: editForm = true;
     // Input fields Config
-    $: uip_country_manufactured = '';
+    $: uip_multiselect_country_manufactured = '';
     $: selectedIds = "";
-    $: uip_country_manufactured_relocation = "";
-    $: uip_countries_sales_opportunities = "";
+    $: uip_multiselect_country_manufactured_relocation = "";
+    $: uip_multiselect_countries_sales_opportunities = "";
     $: uip_translation_fee = 0.15;
     $: uip_pages = 22;
     $: uip_drawings = 2;
@@ -39,9 +40,9 @@
     $: uip_normal_examination = 1000;
     $: uip_extended_examination = 1250;
     $: uip_relocated_country_infringements = false;
-    $: uip_countries_sales_opportunities_represented_toggle = false;
-    $: uip_countries_sales_opportunities_future_toggle = false;
-    $: uip_countries_sales_opportunities_enforcing_toggle = false;
+    $: uip_toggle_countries_sales_opportunities_represented = false;
+    $: uip_toggle_countries_sales_opportunities_future = false;
+    $: uip_toggle_countries_sales_opportunities_enforcing = false;
     $: dynamic_table_rows = '';
     $: chosencountries = [];
     //Put Input Fields into Array 'userval' after Submit
@@ -49,12 +50,11 @@
         
         const thisPatScen = {
             id: Math.random().toString(),
-            uip_country_manufactured: uip_country_manufactured.toString(),
-            uip_country_manufactured_relocation:uip_country_manufactured_relocation.toString(),
-            uip_countries_sales_opportunities:uip_countries_sales_opportunities.toString(),
+            uip_country_manufactured: uip_multiselect_country_manufactured.toString(),
+            uip_country_manufactured_relocation:uip_multiselect_country_manufactured_relocation.toString(),
+            uip_countries_sales_opportunities:uip_multiselect_countries_sales_opportunities.toString(),
             uip_pages: uip_pages,
             uip_translation_fee:uip_translation_fee,
-            uip_pages:uip_pages,
             uip_drawings:uip_drawings,
             uip_claims:uip_claims,
             uip_words:uip_words,
@@ -64,14 +64,22 @@
             uip_normal_examination:uip_normal_examination,
             uip_extended_examination:uip_extended_examination,
             uip_relocated_country_infringements:uip_relocated_country_infringements,
-            uip_countries_sales_opportunities_represented_toggle:uip_countries_sales_opportunities_represented_toggle,
-            uip_countries_sales_opportunities_future_toggle:uip_countries_sales_opportunities_future_toggle,
-            uip_countries_sales_opportunities_enforcing_toggle:uip_countries_sales_opportunities_enforcing_toggle
+            uip_countries_sales_opportunities_represented_toggle:uip_toggle_countries_sales_opportunities_represented,
+            uip_countries_sales_opportunities_future_toggle:uip_toggle_countries_sales_opportunities_future,
+            uip_countries_sales_opportunities_enforcing_toggle:uip_toggle_countries_sales_opportunities_enforcing
         }
         showResults = true;
         editForm = false;
         userval = [thisPatScen, ...userval]
-        chosencountries = userval.map(value => {return {CountryShort: value.uip_country_manufactured}});
+
+
+    // THIS NEEDS TO BE LOOKED AT, + might be a bad way to do (but hey, it surprisingly works)
+        chosencountries = userval.map(value => {return {
+            CountryShort: value.uip_country_manufactured
+            +","+uip_multiselect_country_manufactured_relocation
+            +","+uip_multiselect_countries_sales_opportunities
+
+        }});
         console.log("ChosenC",chosencountries)
 
 
@@ -93,7 +101,14 @@
 
 //building the array for the multiselect-fields
 const transformedvalues = values.map(value => {return {id: value.CountryShort, text: value.Country}});
-const transformedvaluesForTable = values.map(value => {return {id: value.CountryShort, name: value.Country, filing_fee: value.Filing_Fee, claim_fee: value.Claim_Fee, year_8: value.year_8, sum: value.Claim_Fee+value.Filing_Fee+value.year_8}});
+const transformedvaluesForTable = values.map(value => {return {
+    id: value.CountryShort, 
+    name: value.Country, 
+    filing_fee: value.Filing_Fee, 
+    claim_fee: value.Claim_Fee, 
+    year_8: value.year_8, 
+    year_9: value.year_9, 
+    sum: value.Claim_Fee+value.Filing_Fee+value.year_8+value.Filing_Fee+value.year_9}});
 console.log("Tabledata",transformedvaluesForTable)
 
 </script>
@@ -122,7 +137,7 @@ console.log("Tabledata",transformedvaluesForTable)
         <h3 style="margin-bottom:20px; margin-top:20px">Country Data</h3>
 
         <MultiSelect
-            bind:selectedIds={uip_country_manufactured}
+            bind:selectedIds={uip_multiselect_country_manufactured}
             titleText="In which countries is your product manufactured?"
             label=""
             name="uip_country_manufactured"
@@ -130,7 +145,7 @@ console.log("Tabledata",transformedvaluesForTable)
 
         />
         <MultiSelect
-            bind:selectedIds={uip_country_manufactured_relocation}
+            bind:selectedIds={uip_multiselect_country_manufactured_relocation}
             titleText="Can the manufacturing site be quickly relocated to other countries? In which?"
             label=""
             name="uip_country_manufactured_relocation"
@@ -140,7 +155,7 @@ console.log("Tabledata",transformedvaluesForTable)
         <Toggle name="uip_relocated_country_infringements" 
         labelText="Can you track patent infringements in the country?" labelA="No" labelB="Yes" bind:toggled={uip_relocated_country_infringements} />
         <MultiSelect
-            bind:selectedIds={uip_countries_sales_opportunities}
+            bind:selectedIds={uip_multiselect_countries_sales_opportunities}
             titleText="In which countries do you see your greatest sales opportunities?"
             label=""
             name="uip_countries_sales_opportunities"
@@ -148,11 +163,11 @@ console.log("Tabledata",transformedvaluesForTable)
 
         />
         <Toggle name="uip_countries_sales_opportunities_represented_toggle" 
-        labelText="Are you already represented in these markets?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_represented_toggle} />
+        labelText="Are you already represented in these markets?" labelA="No" labelB="Yes" bind:toggled={uip_toggle_countries_sales_opportunities_represented} />
         <Toggle name="uip_countries_sales_opportunities_future_toggle" 
-        labelText="Do you want to work on these markets in the future?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_future_toggle} />
+        labelText="Do you want to work on these markets in the future?" labelA="No" labelB="Yes" bind:toggled={uip_toggle_countries_sales_opportunities_future} />
         <Toggle name="uip_countries_sales_opportunities_enforcing_toggle" 
-        labelText="Are you able/do you want to seriously enforce your rights in these countries?" labelA="No" labelB="Yes" bind:toggled={uip_countries_sales_opportunities_enforcing_toggle} />
+        labelText="Are you able/do you want to seriously enforce your rights in these countries?" labelA="No" labelB="Yes" bind:toggled={uip_toggle_countries_sales_opportunities_enforcing} />
 
         <Button kind="secondary" type="submit" style="margin-top:30px; background-color:#890c58">Submit</Button>
 
@@ -162,7 +177,7 @@ console.log("Tabledata",transformedvaluesForTable)
     {/if}
     {#if showResults == true || editForm == false}
     <h3 style="margin-bottom:30px">Results</h3>
-        <DataTable pageSize=0
+        <DataTable
             title="Cumulated Costs"
             description="Cumulated costs based on your choices."
             headers={[
@@ -170,6 +185,7 @@ console.log("Tabledata",transformedvaluesForTable)
                 { key: "filing_fee", value: "Filing Fee" },
                 { key: "claim_fee", value: "Claim Fee" },
                 { key: "year_8", value: "Year 8" },
+                { key: "year_9", value: "Year 9" },
                 { key: "sum", value: "Sum" },
             ]}
             rows={filterTable(transformedvaluesForTable, chosencountries[0])}
@@ -180,6 +196,7 @@ console.log("Tabledata",transformedvaluesForTable)
         <Button on:click={() => (editForm = true, showResults=false)}>Edit Results</Button>
 
     {/if}
+    <table><tr><td>test</td><td>test2</td></tr></table>
     <!-- {JSON.stringify(userval)} -->
     </div>
     
