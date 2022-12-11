@@ -140,7 +140,8 @@ console.log("Tabledata",transformedvaluesForTable)
             bind:selectedIds={uip_multiselect_country_manufactured}
             titleText="In which countries is your product manufactured?"
             label=""
-            name="uip_country_manufactured"
+            name="uip_country_manufactured" 
+            required=true
             items={transformedvalues}
 
         />
@@ -166,7 +167,7 @@ console.log("Tabledata",transformedvaluesForTable)
         labelText="Are you already represented in these markets?" labelA="No" labelB="Yes" bind:toggled={uip_toggle_countries_sales_opportunities_represented} />
         <Toggle name="uip_countries_sales_opportunities_future_toggle" 
         labelText="Do you want to work on these markets in the future?" labelA="No" labelB="Yes" bind:toggled={uip_toggle_countries_sales_opportunities_future} />
-        <Toggle name="uip_countries_sales_opportunities_enforcing_toggle" 
+        <Toggle name="uip_countries_sales_opportunities_enforcing_toggle"
         labelText="Are you able/do you want to seriously enforce your rights in these countries?" labelA="No" labelB="Yes" bind:toggled={uip_toggle_countries_sales_opportunities_enforcing} />
 
         <Button kind="secondary" type="submit" style="margin-top:30px; background-color:#890c58">Submit</Button>

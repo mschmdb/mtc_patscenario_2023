@@ -39,11 +39,11 @@
   
   <SideNav bind:isOpen={isSideNavOpen}>
     <SideNavItems>
-      <SideNavLink text="Link 1" />
+      <SideNavLink href="/app" text="App" />
       <SideNavLink text="Link 2" />
       <SideNavLink text="Link 3" />
       <SideNavMenu text="Menu">
-        <SideNavMenuItem href="/" text="Link 1" />
+        <SideNavMenuItem href="/app" text="App" />
         <SideNavMenuItem href="/" text="Link 2" />
         <SideNavMenuItem href="/" text="Link 3" />
       </SideNavMenu>
