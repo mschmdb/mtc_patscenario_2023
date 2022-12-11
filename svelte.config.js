@@ -9,7 +9,11 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		csp:{
+			mode:"hash",
+			directives:{"script-src":["self"]},
+			},
 	}
 };
 
