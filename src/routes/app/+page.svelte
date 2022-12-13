@@ -9,7 +9,7 @@
      import { DataTable, Link } from "carbon-components-svelte";
      import Launch from "carbon-icons-svelte/lib/Launch.svelte";
      import { Select, SelectItem } from "carbon-components-svelte";
-     import { chosencountries, storeTableData } from './stores.js';
+     import { chosencountries, storeTableData, storeUserVal } from './stores.js';
      import AppResult from "../../components/AppResult.svelte";
 
 	// import AppForm from "../../components/AppForm.svelte";
@@ -44,7 +44,7 @@
     $: uip_quick_examination = 750;
     $: uip_normal_examination = 1000;
     $: uip_extended_examination = 1250;
-    $: uip_complexity = ""
+    $: uip_complexity = "quick"
     $: dynamic_table_rows = '';
     // $: chosencountries = [];
     //Put Input Fields into Array 'userval' after Submit
@@ -70,6 +70,9 @@
         showResults = true;
         editForm = false;
         userval = [thisPatScen, ...userval]
+        // Set global Store 
+        storeUserVal.set(userval)
+
         console.log("Userval",userval)
 
     // THIS NEEDS TO BE LOOKED AT, + might be a bad way to do (but hey, it surprisingly works)
@@ -77,10 +80,11 @@
             country_code: value.uip_multiselect_country_filing
         }});
         console.log("ChosenC",countrydatatemp)
+        // Set global Store 
         chosencountries.set(countrydatatemp)
         
         let tabledatatemp = values.filter(value => countrydatatemp[0].country_code.includes(value.country_code));
-        
+        // Set global Store 
         storeTableData.set(tabledatatemp)
         console.log("FilteredTable",$storeTableData)
     }

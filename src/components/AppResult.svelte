@@ -8,10 +8,18 @@
   } from "carbon-components-svelte";
 	import { User } from "carbon-icons-svelte";
 	import { children } from "svelte/internal";
-    import { chosencountries, storeTableData } from '../routes/app/stores.js';
+    import { chosencountries, storeTableData, storeUserVal } from '../routes/app/stores.js';
     const tableData = Object.values($storeTableData)
    
     console.log("in component",$storeTableData)
+    let attorneyfeeval = 0
+    if ($storeUserVal[0].uip_complexity === "quick") {
+        attorneyfeeval = 750
+    } else if ($storeUserVal[0].uip_complexity === "normal") {
+        attorneyfeeval = 1000
+    } else {
+        attorneyfeeval = 1250
+    }
 </script>
 
 <StructuredList>
@@ -50,55 +58,78 @@
         <StructuredListCell>{values.country_name}</StructuredListCell>
         <StructuredListCell>One Time</StructuredListCell>
         <StructuredListCell></StructuredListCell>
+        <StructuredListCell>{$storeUserVal[0].uip_complexity}</StructuredListCell>
         <StructuredListCell></StructuredListCell>
-        <StructuredListCell>Year 1</StructuredListCell>
-        <StructuredListCell>Year 2</StructuredListCell>
-        <StructuredListCell>Year 3</StructuredListCell>
-        <StructuredListCell>Year 4</StructuredListCell>
-        <StructuredListCell>Year 5</StructuredListCell>
-        <StructuredListCell>Year 6</StructuredListCell>
-        <StructuredListCell>Year 7</StructuredListCell>
-        <StructuredListCell>Year 8</StructuredListCell>
-        <StructuredListCell>Year 9</StructuredListCell>
-        <StructuredListCell>Year 10</StructuredListCell>
-        <StructuredListCell>Year 11</StructuredListCell>
-        <StructuredListCell>Year 12</StructuredListCell>
-        <StructuredListCell>Year 13</StructuredListCell>
-        <StructuredListCell>Year 14</StructuredListCell>
-        <StructuredListCell>Year 15</StructuredListCell>
-        <StructuredListCell>Year 16</StructuredListCell>
-        <StructuredListCell>Year 17</StructuredListCell>
-        <StructuredListCell>Year 18</StructuredListCell>
-        <StructuredListCell>Year 19</StructuredListCell>
-        <StructuredListCell>Year 20</StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
       </StructuredListRow>
       <StructuredListRow>
         <StructuredListCell>{values.country_name}</StructuredListCell>
         <StructuredListCell>Maintenance</StructuredListCell>
         <StructuredListCell></StructuredListCell>
         <StructuredListCell></StructuredListCell>
-        <StructuredListCell>Year 1</StructuredListCell>
-        <StructuredListCell>Year 2</StructuredListCell>
-        <StructuredListCell>Year 3</StructuredListCell>
-        <StructuredListCell>Year 4</StructuredListCell>
-        <StructuredListCell>Year 5</StructuredListCell>
-        <StructuredListCell>Year 6</StructuredListCell>
-        <StructuredListCell>Year 7</StructuredListCell>
-        <StructuredListCell>Year 8</StructuredListCell>
-        <StructuredListCell>Year 9</StructuredListCell>
-        <StructuredListCell>Year 10</StructuredListCell>
-        <StructuredListCell>Year 11</StructuredListCell>
-        <StructuredListCell>Year 12</StructuredListCell>
-        <StructuredListCell>Year 13</StructuredListCell>
-        <StructuredListCell>Year 14</StructuredListCell>
-        <StructuredListCell>Year 15</StructuredListCell>
-        <StructuredListCell>Year 16</StructuredListCell>
-        <StructuredListCell>Year 17</StructuredListCell>
-        <StructuredListCell>Year 18</StructuredListCell>
-        <StructuredListCell>Year 19</StructuredListCell>
-        <StructuredListCell>Year 20</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_01}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_02}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_03}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_04}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_05}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_06}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_07}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_08}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_09}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_10}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_11}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_12}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_13}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_14}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_15}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_16}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_17}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_18}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_19}</StructuredListCell>
+        <StructuredListCell>{values.maintenance_year_20}</StructuredListCell>
       </StructuredListRow>
     {/each}
+    
+    <StructuredListRow>
+        <StructuredListCell>Attorney Fees</StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell></StructuredListCell>
+        <StructuredListCell>{attorneyfeeval}</StructuredListCell>
+
+    {#if $storeUserVal[0].uip_complexity == "quick"}
+        {#each {length: 1} as _, i}
+        <StructuredListCell>{attorneyfeeval}</StructuredListCell>
+        {/each}
+    {:else if $storeUserVal[0].uip_complexity == "normal"}    
+        {#each {length: 2} as _, i}
+        <StructuredListCell>{attorneyfeeval}</StructuredListCell>
+        {/each}
+    {:else}
+        {#each {length: 5} as _, i}
+        <StructuredListCell>{attorneyfeeval}</StructuredListCell>
+        {/each}
+        {/if}
+    
+      </StructuredListRow>
 
     </StructuredListBody>
   </StructuredList>
