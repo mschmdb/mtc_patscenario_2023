@@ -8,11 +8,8 @@
      import { Button } from "carbon-components-svelte";
      import { DataTable, Link } from "carbon-components-svelte";
      import Launch from "carbon-icons-svelte/lib/Launch.svelte";
-     
+	// import AppForm from "../../components/AppForm.svelte";
 
-
-
-	
 
     //Fetch Data
     export let data
@@ -75,7 +72,7 @@
 
     // THIS NEEDS TO BE LOOKED AT, + might be a bad way to do (but hey, it surprisingly works)
         chosencountries = userval.map(value => {return {
-            CountryShort: value.uip_country_manufactured
+            country_code: value.uip_country_manufactured
             +","+uip_multiselect_country_manufactured_relocation
             +","+uip_multiselect_countries_sales_opportunities
 
@@ -88,27 +85,20 @@
     function filterTable(arr, filterId) 
     {
     return [...arr.filter(obj => 
-    filterId && filterId.CountryShort && filterId.CountryShort.split(",").includes(obj.id))];
+    filterId && filterId.country_code && filterId.country_code.split(",").includes(obj.id))];
 
     }
 
-    
-// console.log(userval)
-// console.log(values)
-
-
-
-
 //building the array for the multiselect-fields
-const transformedvalues = values.map(value => {return {id: value.CountryShort, text: value.Country}});
+const transformedvalues = values.map(value => {return {id: value.country_code, text: value.country_name}});
 const transformedvaluesForTable = values.map(value => {return {
-    id: value.CountryShort, 
-    name: value.Country, 
-    filing_fee: value.Filing_Fee, 
-    claim_fee: value.Claim_Fee, 
-    year_8: value.year_8, 
-    year_9: value.year_9, 
-    sum: value.Claim_Fee+value.Filing_Fee+value.year_8+value.Filing_Fee+value.year_9}});
+    id: value.country_code, 
+    name: value.country_name, 
+    filing_fee: value.filing_fee, 
+    publication_fee: value.publication_fee, 
+    year_8: value.maintenance_year_08, 
+    year_9: value.maintenance_year_09, 
+    sum: value.publication_fee+value.filing_fee+value.maintenance_year_08+value.maintenance_year_09}});
 console.log("Tabledata",transformedvaluesForTable)
 
 </script>
@@ -117,6 +107,7 @@ console.log("Tabledata",transformedvaluesForTable)
 
     <h1 class="text-2xl">Patscenario</h1>
     {#if editForm}
+    
     <form on:submit|preventDefault={submitForm}>
         <h3 style="margin-bottom:30px">Base Config</h3>
             <NumberInput name="uip_translation_fee" label="Translation Fees in € / Word" bind:value={uip_translation_fee} step={0.01} />
@@ -184,7 +175,7 @@ console.log("Tabledata",transformedvaluesForTable)
             headers={[
                 { key: "name", value: "Country" },
                 { key: "filing_fee", value: "Filing Fee" },
-                { key: "claim_fee", value: "Claim Fee" },
+                { key: "publication_fee", value: "Publication Fee" },
                 { key: "year_8", value: "Year 8" },
                 { key: "year_9", value: "Year 9" },
                 { key: "sum", value: "Sum" },
@@ -197,7 +188,7 @@ console.log("Tabledata",transformedvaluesForTable)
         <Button on:click={() => (editForm = true, showResults=false)}>Edit Results</Button>
 
     {/if}
-    <table><tr><td>test</td><td>test2</td></tr></table>
+   
     <!-- {JSON.stringify(userval)} -->
     </div>
     
