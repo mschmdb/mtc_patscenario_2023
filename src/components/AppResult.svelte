@@ -106,6 +106,58 @@
 				<StructuredListCell />
 				<StructuredListCell />
 			</StructuredListRow>
+      <StructuredListRow>
+				<StructuredListCell />
+				<StructuredListCell>Publication Fee</StructuredListCell>
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell>{values.publication_fee}</StructuredListCell>
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+			</StructuredListRow>
+      <StructuredListRow>
+				<StructuredListCell />
+				<StructuredListCell>Grant Fee</StructuredListCell>
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell>{values.grant_fee}</StructuredListCell>
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+				<StructuredListCell />
+			</StructuredListRow>
 			<StructuredListRow>
 				<StructuredListCell />
 				<StructuredListCell>Maintenance</StructuredListCell>
@@ -168,7 +220,7 @@
 </StructuredList>
 
 <h2 style="margin-bottom:30px">Translation Fees</h2>
-<div style="width:50%">
+<div style="width:100%">
 	<StructuredList id="sl2" condensed width="bind:clientWidth">
 		<StructuredListHead>
 			<StructuredListRow head>

@@ -27,7 +27,7 @@
 	$: showResults = false;
 	$: editForm = true;
 	// Input fields Config
-	$: uip_multiselect_country_filing = 'DE, AU';
+	$: uip_multiselect_country_filing = 'DE, AU, GB, CH, TW';
 	$: uip_multiselect_country_filing_Lang = 'DE';
 	$: uip_multiselect_country_filing_subsequent = '';
 	$: selectedIds = '';
