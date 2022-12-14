@@ -22,7 +22,7 @@
     }
 </script>
 
-<StructuredList>
+<StructuredList condensed>
     <StructuredListHead>
       <StructuredListRow head>
         <StructuredListCell head>Country</StructuredListCell>
