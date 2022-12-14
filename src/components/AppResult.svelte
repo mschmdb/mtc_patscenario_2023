@@ -59,7 +59,7 @@ function translationgetcost(translationFrom, translationTo) {
   for (const language of nationalLanguages) {
     if (!uipLanguages.includes(language)) {
       
-      translationcosts = $storeUserVal[0].uip_words*$storeUserVal[0].uip_translation_fee
+      translationcosts = ($storeUserVal[0].uip_words_claims+$storeUserVal[0].uip_words)*$storeUserVal[0].uip_translation_fee
       break;
     }
   }
@@ -282,7 +282,7 @@ function translationgetcost(translationFrom, translationTo) {
 		<StructuredListBody>
 			<StructuredListRow>
 				<StructuredListCell noWrap></StructuredListCell>
-				<StructuredListCell>{$storeUserVal[0].uip_words}</StructuredListCell>
+				<StructuredListCell>{$storeUserVal[0].uip_words_claims+$storeUserVal[0].uip_words}</StructuredListCell>
 				<StructuredListCell>{$storeUserVal[0].uip_translation_fee}</StructuredListCell>
         <StructuredListCell>{translationFrom}</StructuredListCell>
         <StructuredListCell>{tableData[0].language_requirements_national}</StructuredListCell>
