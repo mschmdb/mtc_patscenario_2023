@@ -11,7 +11,10 @@
 	import { chosencountries, storeTableData, storeUserVal } from '../routes/app/stores.js';
 	const tableData = Object.values($storeTableData);
 
+
 	console.log('in component', $storeTableData);
+
+  // get attourneycosts from complexity
 	let attorneyfeeval = 0;
 	if ($storeUserVal[0].uip_complexity === 'quick') {
 		attorneyfeeval = 750;
@@ -20,6 +23,49 @@
 	} else {
 		attorneyfeeval = 1250;
 	}
+// get translationcosts
+  let translationFrom = $storeUserVal[0].uip_multiselect_country_filing_Lang
+  function translationVal(translationFrom, translationTo) {
+    let translationNeeded = "yes";
+  for (const word of translationTo) {
+    if (translationFrom.includes(word)) {
+      translationNeeded = "no";
+      break;
+    }
+  }
+  return translationNeeded;
+}
+
+function compareTranslations(translationFrom, translationTo) {
+  let translationNeeded = "no";
+  
+  const uipLanguages = translationFrom.split(",");
+  const nationalLanguages = translationTo.split(",");
+  for (const language of nationalLanguages) {
+    if (!uipLanguages.includes(language)) {
+      translationNeeded = "yes";
+      
+      break;
+    }
+  }
+  return translationNeeded;
+}
+
+function translationgetcost(translationFrom, translationTo) {
+  let translationcosts = 0;
+  
+  const uipLanguages = translationFrom.split(",");
+  const nationalLanguages = translationTo.split(",");
+  for (const language of nationalLanguages) {
+    if (!uipLanguages.includes(language)) {
+      
+      translationcosts = $storeUserVal[0].uip_words*$storeUserVal[0].uip_translation_fee
+      break;
+    }
+  }
+  return translationcosts;
+}
+
 </script>
 
 <h2 style="margin-bottom:30px">Results</h2>
@@ -224,39 +270,26 @@
 	<StructuredList id="sl2" condensed width="bind:clientWidth">
 		<StructuredListHead>
 			<StructuredListRow head>
-				<StructuredListCell head>Column A</StructuredListCell>
-				<StructuredListCell head>Column B</StructuredListCell>
-				<StructuredListCell head>Column C</StructuredListCell>
+				<StructuredListCell head />
+				<StructuredListCell head>Words</StructuredListCell>
+				<StructuredListCell head>Translation Cost</StructuredListCell>
+        <StructuredListCell head>Translation from</StructuredListCell>
+        <StructuredListCell head>Translation to</StructuredListCell>
+        <StructuredListCell head>Translation needed?</StructuredListCell>
+        <StructuredListCell head>Translation sum</StructuredListCell>
 			</StructuredListRow>
 		</StructuredListHead>
 		<StructuredListBody>
 			<StructuredListRow>
-				<StructuredListCell noWrap>Row 1</StructuredListCell>
-				<StructuredListCell>Row 1</StructuredListCell>
-				<StructuredListCell>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui magna, finibus id tortor
-					sed, aliquet bibendum augue. Aenean posuere sem vel euismod dignissim. Nulla ut cursus
-					dolor. Pellentesque vulputate nisl a porttitor interdum.
-				</StructuredListCell>
+				<StructuredListCell noWrap></StructuredListCell>
+				<StructuredListCell>{$storeUserVal[0].uip_words}</StructuredListCell>
+				<StructuredListCell>{$storeUserVal[0].uip_translation_fee}</StructuredListCell>
+        <StructuredListCell>{translationFrom}</StructuredListCell>
+        <StructuredListCell>{tableData[0].language_requirements_national}</StructuredListCell>
+        <StructuredListCell>{compareTranslations(translationFrom, tableData[0].language_requirements_national)}</StructuredListCell>
+        <StructuredListCell noWrap>€ {translationgetcost(translationFrom, tableData[0].language_requirements_national)}</StructuredListCell>
 			</StructuredListRow>
-			<StructuredListRow>
-				<StructuredListCell noWrap>Row 2</StructuredListCell>
-				<StructuredListCell>Row 2</StructuredListCell>
-				<StructuredListCell>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui magna, finibus id tortor
-					sed, aliquet bibendum augue. Aenean posuere sem vel euismod dignissim. Nulla ut cursus
-					dolor. Pellentesque vulputate nisl a porttitor interdum.
-				</StructuredListCell>
-			</StructuredListRow>
-			<StructuredListRow>
-				<StructuredListCell noWrap>Row 3</StructuredListCell>
-				<StructuredListCell>Row 3</StructuredListCell>
-				<StructuredListCell>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc dui magna, finibus id tortor
-					sed, aliquet bibendum augue. Aenean posuere sem vel euismod dignissim. Nulla ut cursus
-					dolor. Pellentesque vulputate nisl a porttitor interdum.
-				</StructuredListCell>
-			</StructuredListRow>
+			
 		</StructuredListBody>
 	</StructuredList>
 </div>
