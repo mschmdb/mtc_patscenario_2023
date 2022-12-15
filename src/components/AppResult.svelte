@@ -307,7 +307,7 @@ console.log("sum_year_1",sum_year_1)
 			<StructuredListCell />
 			<StructuredListCell />
 			<StructuredListCell />
-			<StructuredListCell>{attorneyfeeval}</StructuredListCell>
+			<StructuredListCell>{attorneyfeeval + 800}</StructuredListCell>
 
 			{#if $storeUserVal[0].uip_complexity == 'quick'}
 				{#each { length: 1 } as _, i}
