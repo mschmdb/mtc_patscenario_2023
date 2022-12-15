@@ -228,22 +228,7 @@
 	{/if}
 	{#if showResults == true || editForm == false}
 		<AppResult  />
-		<!-- <DataTable
-            title="Cumulated Costs"
-            description="Cumulated costs based on your choices."
-            headers={[
-                { key: "name", value: "Country" },
-                { key: "filing_fee", value: "Filing Fee" },
-                { key: "publication_fee", value: "Publication Fee" },
-                { key: "year_8", value: "Year 8" },
-                { key: "year_9", value: "Year 9" },
-                { key: "sum", value: "Sum" },
-            ]}
-            rows={filterTable(transformedvaluesForTable, $chosencountries[0])}
-            >       
-           
-            
-        </DataTable> -->
+		
 		<Button on:click={() => ((editForm = true), (showResults = false))}>Edit Results</Button>
 	{/if}
 
