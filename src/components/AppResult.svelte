@@ -1,4 +1,5 @@
 <script>
+  import { fade, fly } from 'svelte/transition';
 	import {
 		StructuredList,
 		StructuredListHead,
@@ -10,8 +11,26 @@
 	import { children } from 'svelte/internal';
 	import { chosencountries, storeTableData, storeUserVal } from '../routes/app/stores.js';
 	const tableData = Object.values($storeTableData);
-
-
+  let sum_year_1 = 0
+  let sum_year_2 = 0
+  let sum_year_3 = 0
+  let sum_year_4 = 0
+  let sum_year_5 = 0
+  let sum_year_6 = 0
+  let sum_year_7 = 0
+  let sum_year_8 = 0
+  let sum_year_9 = 0
+  let sum_year_10 = 0
+  let sum_year_11 = 0
+  let sum_year_12 = 0
+  let sum_year_13 = 0
+  let sum_year_14 = 0
+  let sum_year_15 = 0
+  let sum_year_16 = 0
+  let sum_year_17 = 0
+  let sum_year_18 = 0
+  let sum_year_19 = 0
+  let sum_year_20 = 0
 	console.log('in component', $storeTableData);
 
   // get attourneycosts from complexity
@@ -66,9 +85,59 @@ function translationgetcost(translationFrom, translationTo) {
   return translationcosts;
 }
 
+
+// Adding up sums
+tableData.forEach(function(item) {
+    sum_year_1 += item.filing_fee+item.maintenance_year_01;
+    sum_year_2 += item.publication_fee+item.publication_fee+item.maintenance_year_02;
+    sum_year_3 += item.grant_fee+item.maintenance_year_03;
+    sum_year_4 += item.maintenance_year_04;
+    sum_year_5 += item.maintenance_year_05;
+    sum_year_6 += item.maintenance_year_06;
+    sum_year_7 += item.maintenance_year_07;
+    sum_year_8 += item.maintenance_year_08;
+    sum_year_9 += item.maintenance_year_09;
+    sum_year_10 += item.maintenance_year_10;
+    sum_year_11 += item.maintenance_year_11;
+    sum_year_12 += item.maintenance_year_12;
+    sum_year_13 += item.maintenance_year_13;
+    sum_year_14 += item.maintenance_year_14;
+    sum_year_15 += item.maintenance_year_15;
+    sum_year_16 += item.maintenance_year_16;
+    sum_year_17 += item.maintenance_year_17;
+    sum_year_18 += item.maintenance_year_18;
+    sum_year_19 += item.maintenance_year_19;
+    sum_year_20 += item.maintenance_year_20;
+}
+  );
+//function needed for attornefeval
+sum_year_1 = sum_year_1 + attorneyfeeval 
+sum_year_2 = sum_year_2 + attorneyfeeval
+sum_year_3 = sum_year_3 + attorneyfeeval
+sum_year_4 = sum_year_4 + attorneyfeeval 
+sum_year_5 = sum_year_5 + attorneyfeeval 
+sum_year_6 = sum_year_6 + attorneyfeeval 
+sum_year_7 = sum_year_7
+sum_year_8 = sum_year_8
+sum_year_9 = sum_year_9
+sum_year_10 = sum_year_10
+sum_year_11 = sum_year_11
+sum_year_12 = sum_year_12
+sum_year_13 = sum_year_13
+sum_year_14 = sum_year_14
+sum_year_15 = sum_year_15
+sum_year_16 = sum_year_16
+sum_year_17 = sum_year_17
+sum_year_18 = sum_year_18
+sum_year_19 = sum_year_19 
+sum_year_20 = sum_year_20
+
+
+console.log("sum_year_1",sum_year_1)
 </script>
 
 <h2 style="margin-bottom:30px">Results</h2>
+<div in:fade out:fade>
 <StructuredList condensed>
 	<StructuredListHead>
 		<StructuredListRow head>
@@ -230,6 +299,7 @@ function translationgetcost(translationFrom, translationTo) {
 				<StructuredListCell>{values.maintenance_year_19}</StructuredListCell>
 				<StructuredListCell>{values.maintenance_year_20}</StructuredListCell>
 			</StructuredListRow>
+      
 		{/each}
 
 		<StructuredListRow>
@@ -262,6 +332,32 @@ function translationgetcost(translationFrom, translationTo) {
 				{/each}
 			{/if}
 		</StructuredListRow>
+    <StructuredListRow>
+      <StructuredListCell>Sum</StructuredListCell>
+      <StructuredListCell></StructuredListCell>
+      <StructuredListCell />
+      <StructuredListCell />
+      <StructuredListCell>{sum_year_1}</StructuredListCell>
+      <StructuredListCell>{sum_year_2}</StructuredListCell>
+      <StructuredListCell>{sum_year_3}</StructuredListCell>
+      <StructuredListCell>{sum_year_4}</StructuredListCell>
+      <StructuredListCell>{sum_year_5}</StructuredListCell>
+      <StructuredListCell>{sum_year_6}</StructuredListCell>
+      <StructuredListCell>{sum_year_7}</StructuredListCell>
+      <StructuredListCell>{sum_year_8}</StructuredListCell>
+      <StructuredListCell>{sum_year_9}</StructuredListCell>
+      <StructuredListCell>{sum_year_10}</StructuredListCell>
+      <StructuredListCell>{sum_year_11}</StructuredListCell>
+      <StructuredListCell>{sum_year_12}</StructuredListCell>
+      <StructuredListCell>{sum_year_13}</StructuredListCell>
+      <StructuredListCell>{sum_year_14}</StructuredListCell>
+      <StructuredListCell>{sum_year_15}</StructuredListCell>
+      <StructuredListCell>{sum_year_16}</StructuredListCell>
+      <StructuredListCell>{sum_year_17}</StructuredListCell>
+      <StructuredListCell>{sum_year_18}</StructuredListCell>
+      <StructuredListCell>{sum_year_19}</StructuredListCell>
+      <StructuredListCell>{sum_year_20}</StructuredListCell>
+    </StructuredListRow>
 	</StructuredListBody>
 </StructuredList>
 
@@ -271,8 +367,6 @@ function translationgetcost(translationFrom, translationTo) {
 		<StructuredListHead>
 			<StructuredListRow head>
 				<StructuredListCell head />
-				<StructuredListCell head>Words</StructuredListCell>
-				<StructuredListCell head>Translation Cost</StructuredListCell>
         <StructuredListCell head>Translation from</StructuredListCell>
         <StructuredListCell head>Translation to</StructuredListCell>
         <StructuredListCell head>Translation needed?</StructuredListCell>
@@ -282,8 +376,6 @@ function translationgetcost(translationFrom, translationTo) {
 		<StructuredListBody>
 			<StructuredListRow>
 				<StructuredListCell noWrap></StructuredListCell>
-				<StructuredListCell>{$storeUserVal[0].uip_words_claims+$storeUserVal[0].uip_words}</StructuredListCell>
-				<StructuredListCell>{$storeUserVal[0].uip_translation_fee}</StructuredListCell>
         <StructuredListCell>{translationFrom}</StructuredListCell>
         <StructuredListCell>{tableData[0].language_requirements_national}</StructuredListCell>
         <StructuredListCell>{compareTranslations(translationFrom, tableData[0].language_requirements_national)}</StructuredListCell>
@@ -292,4 +384,5 @@ function translationgetcost(translationFrom, translationTo) {
 			
 		</StructuredListBody>
 	</StructuredList>
+</div>
 </div>

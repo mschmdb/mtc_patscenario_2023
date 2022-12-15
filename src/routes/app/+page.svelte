@@ -11,6 +11,7 @@
 	import { Select, SelectItem } from 'carbon-components-svelte';
 	import { chosencountries, storeTableData, storeUserVal } from './stores.js';
 	import AppResult from '../../components/AppResult.svelte';
+    import { fade, fly } from 'svelte/transition';
 
 	// import AppForm from "../../components/AppForm.svelte";
 
@@ -27,7 +28,7 @@
 	$: showResults = false;
 	$: editForm = true;
 	// Input fields Config
-	$: uip_multiselect_country_filing = 'DE';
+	$: uip_multiselect_country_filing = 'DE, CN';
 	$: uip_multiselect_country_filing_Lang = 'DE';
 	$: uip_multiselect_country_filing_subsequent = '';
 	$: selectedIds = '';
@@ -133,7 +134,7 @@
 <div class="container m-8">
 	<h1 class="text-2xl">Patscenario</h1>
 	{#if editForm}
-		<form on:submit|preventDefault={submitForm}>
+		<form on:submit|preventDefault|stopPropagation={submitForm}>
 			<h2 style="margin-bottom:30px">Base Config</h2>
 			<MultiSelect
 				bind:selectedIds={uip_multiselect_country_filing}
@@ -226,7 +227,7 @@
 		</form>
 	{/if}
 	{#if showResults == true || editForm == false}
-		<AppResult />
+		<AppResult  />
 		<!-- <DataTable
             title="Cumulated Costs"
             description="Cumulated costs based on your choices."
