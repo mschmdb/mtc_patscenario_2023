@@ -111,7 +111,7 @@ tableData.forEach(function(item) {
 }
   );
 //function needed for attornefeval
-sum_year_1 = sum_year_1 + attorneyfeeval 
+sum_year_1 = sum_year_1 + attorneyfeeval + 800 
 sum_year_2 = sum_year_2 + attorneyfeeval
 sum_year_3 = sum_year_3 + attorneyfeeval
 sum_year_4 = sum_year_4 + attorneyfeeval 
