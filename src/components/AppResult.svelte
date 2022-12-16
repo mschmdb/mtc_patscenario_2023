@@ -7,6 +7,7 @@
 		StructuredListCell,
 		StructuredListBody
 	} from 'carbon-components-svelte';
+	
 
 	import { LineChart } from '@carbon/charts-svelte';
 	import "@carbon/charts/styles.css";

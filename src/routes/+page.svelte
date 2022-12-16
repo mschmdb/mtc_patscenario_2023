@@ -14,7 +14,7 @@
     import { fade, fly } from 'svelte/transition';
 	
     
-	import '@carbon/charts/styles.css';
+	// import '@carbon/charts/styles.css';
 
 
 	// import AppForm from "../../components/AppForm.svelte";
