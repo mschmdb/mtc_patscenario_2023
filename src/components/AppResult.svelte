@@ -12,7 +12,7 @@
 	import "@carbon/charts/styles.css";
 	import { User } from 'carbon-icons-svelte';
 	import { children } from 'svelte/internal';
-	import { chosencountries, storeTableData, storeUserVal } from '../routes/app/stores.js';
+	import { chosencountries, storeTableData, storeUserVal } from '../routes/stores.js';
 	const tableData = Object.values($storeTableData);
   let sum_year_1 = 0
   let sum_year_2 = 0
