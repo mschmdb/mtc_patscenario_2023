@@ -29,7 +29,7 @@
 	$: showResults = false;
 	$: editForm = true;
 	// Input fields Config
-	$: uip_multiselect_country_filing = 'DE, CN';
+	$: uip_multiselect_country_filing = 'DE, CH';
 	$: uip_multiselect_country_filing_Lang = 'DE';
 	$: uip_multiselect_country_filing_subsequent = '';
 	$: selectedIds = '';
