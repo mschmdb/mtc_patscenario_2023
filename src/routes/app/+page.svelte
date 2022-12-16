@@ -13,6 +13,7 @@
 	import AppResult from '../../components/AppResult.svelte';
     import { fade, fly } from 'svelte/transition';
 	import { LineChart } from "@carbon/charts";
+	import '@carbon/charts/styles.css';
 
 
 	// import AppForm from "../../components/AppForm.svelte";
