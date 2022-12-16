@@ -1,4 +1,4 @@
-<script>
+<script type="ts">
   import { fade, fly } from 'svelte/transition';
 	import {
 		StructuredList,
@@ -7,6 +7,9 @@
 		StructuredListCell,
 		StructuredListBody
 	} from 'carbon-components-svelte';
+	import { LineChart } from "@carbon/charts-svelte";
+	
+	import "@carbon/charts/styles.css";
 	import { User } from 'carbon-icons-svelte';
 	import { children } from 'svelte/internal';
 	import { chosencountries, storeTableData, storeUserVal } from '../routes/app/stores.js';
@@ -132,8 +135,112 @@ sum_year_18 = sum_year_18
 sum_year_19 = sum_year_19 
 sum_year_20 = sum_year_20
 
-
-console.log("sum_year_1",sum_year_1)
+let sum_years = [
+	{
+		"group": "Yearly Cost",
+		"key": "Year 1",
+		"value": sum_year_1 + translationgetcost(translationFrom, tableData[0].language_requirements_national)
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 2",
+		"value": sum_year_2
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 3",
+		"value": sum_year_3
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 4",
+		"value": sum_year_4
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 5",
+		"value": sum_year_5
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 6",
+		"value": sum_year_6
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 7",
+		"value": sum_year_7
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 8",
+		"value": sum_year_8
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 9",
+		"value": sum_year_9
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 10",
+		"value": sum_year_10
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 11",
+		"value": sum_year_11
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 12",
+		"value": sum_year_12
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 13",
+		"value": sum_year_13
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 14",
+		"value": sum_year_14
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 15",
+		"value": sum_year_15
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 16",
+		"value": sum_year_16
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 17",
+		"value": sum_year_17
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 18",
+		"value": sum_year_18
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 19",
+		"value": sum_year_19
+	},
+	{
+		"group": "Yearly Cost",
+		"key": "Year 20",
+		"value": sum_year_20
+	},
+	
+	
+	
+]
+console.log("sum_years",sum_year_1)
 </script>
 
 <h2 style="margin-bottom:30px">Results</h2>
@@ -384,5 +491,25 @@ console.log("sum_year_1",sum_year_1)
 			
 		</StructuredListBody>
 	</StructuredList>
+
+	<LineChart
+	data={sum_years}
+	options={{
+	"title": "Yearly Cost",
+	"axes": {
+		"bottom": {
+			"title": "Years",
+			"mapsTo": "key",
+			"scaleType": "labels"
+		},
+		"left": {
+			"mapsTo": "value",
+			"title": "Cost (€)",
+			"scaleType": "linear"
+		}
+	},
+	"height": "400px"
+}}
+	/>
 </div>
 </div>
