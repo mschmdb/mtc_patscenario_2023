@@ -16,6 +16,7 @@
       Row,
       Column,
     } from "carbon-components-svelte";
+    import '@carbon/charts/styles.css';
   
     let isSideNavOpen = false;
   </script>
