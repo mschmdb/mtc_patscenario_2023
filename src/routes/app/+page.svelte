@@ -12,6 +12,7 @@
 	import { chosencountries, storeTableData, storeUserVal } from './stores.js';
 	import AppResult from '../../components/AppResult.svelte';
     import { fade, fly } from 'svelte/transition';
+	import { LineChart } from "@carbon/charts";
 
 
 	// import AppForm from "../../components/AppForm.svelte";
