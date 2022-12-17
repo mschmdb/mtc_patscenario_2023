@@ -237,9 +237,6 @@ let sum_years = [
 		"key": "Year 20",
 		"value": sum_year_20
 	},
-	
-	
-	
 ]
 console.log("sum_years",sum_year_1)
 </script>

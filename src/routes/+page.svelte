@@ -232,7 +232,7 @@
 	{/if}
 	{#if showResults == true || editForm == false}
 		<AppResult  />
-		
+		<br>
 		<Button on:click={() => ((editForm = true), (showResults = false))}>Edit Results</Button>
 	{/if}
 
