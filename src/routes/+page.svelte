@@ -1,4 +1,4 @@
-<script>
+<script type="ts">
 	import 'carbon-components-svelte/css/g10.css';
 	import { MultiSelect } from 'carbon-components-svelte';
 	import { TextInput } from 'carbon-components-svelte';
