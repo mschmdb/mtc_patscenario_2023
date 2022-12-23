@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "routes": [
+    {
+      "src": "/_app/.+",
+      "headers": {
+        "cache-control": "public, immutable, max-age=31536000"
+      }
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "^/?(?:/__data.json)?$",
+      "dest": "/index"
+    },
+    {
+      "src": "^/app/?(?:/__data.json)?$",
+      "dest": "/app"
+    },
+    {
+      "src": "^/result/?(?:/__data.json)?$",
+      "dest": "/result"
+    }
+  ],
+  "overrides": {}
+}
