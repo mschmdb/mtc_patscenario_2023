@@ -136,7 +136,7 @@
 </script>
 
 <div class="container m-8">
-	<h1 class="text-2xl">Patscenario</h1>
+	<h1 class="text-2xl">Patscenariopp</h1>
 	{#if editForm}
 		<form on:submit|preventDefault|stopPropagation={submitForm} in:fade out:fade>
 			<h2 style="margin-bottom:30px">Base Config</h2>
