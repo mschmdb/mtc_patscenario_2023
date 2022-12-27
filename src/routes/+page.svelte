@@ -2,9 +2,6 @@
 	import 'carbon-components-svelte/css/g10.css';
 	import { Button } from 'carbon-components-svelte';
 	import {
-		chosencountries,
-		storeTableData,
-		storeUserVal,
 		storeUserCho,
 		supaData,
 		storeUserCountries
@@ -53,8 +50,8 @@
 	<AppForm bind:form />
 	{#if editForm}
 		<!-- {JSON.stringify(form)}<br> -->
-		showresults: {showResults}<br />
-		storeusercountries: {JSON.stringify($storeUserCountries)}<br />
+		<!-- showresults: {showResults}<br /> -->
+		<!-- storeusercountries: {JSON.stringify($storeUserCountries)}<br /> -->
 		<!-- {JSON.stringify($storeUserCho)}<br /> -->
 		<!-- UIP PAGES: {($storeUserCho || {}).uip_pages}<br /> -->
 		<!-- Filing: {filingCountries} -->

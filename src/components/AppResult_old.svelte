@@ -9,8 +9,7 @@
 	} from 'carbon-components-svelte';
 	
 
-	import { LineChart } from '@carbon/charts-svelte';
-	import "@carbon/charts/styles.css";
+	
 	import { User } from 'carbon-icons-svelte';
 	import { children } from 'svelte/internal';
 	import { chosencountries, storeTableData, storeUserCho } from '../routes/stores.js';
