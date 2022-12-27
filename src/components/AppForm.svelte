@@ -54,7 +54,7 @@
 		name="uip_multiselect_country_filing"
 		required
 		disabled="true"
-		placeholder="DE"
+		placeholder="DE, CH"
 		items={transformedvalues}
 	/>
 	<input
