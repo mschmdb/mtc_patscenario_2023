@@ -12,14 +12,23 @@
 	import '@carbon/charts/styles.css';
 	import { Result, User } from 'carbon-icons-svelte';
 	import { children } from 'svelte/internal';
-	import { chosencountries, storeTableData, storeUserCho, supaData, storeUserCountries } from '../routes/stores.js';
+	import {
+		chosencountries,
+		storeTableData,
+		storeUserCho,
+		supaData,
+		storeUserCountries
+	} from '../routes/stores.js';
+	
+	 $: $storeUserCountries, updateTableData()
 
-
-	console.log($storeUserCountries)
+	// console.log($storeUserCountries);
 	// build Array for Table & Charts
-	$: result = []
-if ($storeUserCountries) {
-	result = Object.values($storeUserCountries).reduce((acc, item) => {
+	// $: result = [];
+
+	console.log('$storeUserCountries:', $storeUserCountries);
+	const updateTableData = () => {
+	const result = Object.values($storeUserCountries).reduce((acc, item) => {
 		acc[item.country_code] = {};
 
 		for (let i = 1; i <= 20; i++) {
@@ -32,17 +41,17 @@ if ($storeUserCountries) {
 				country: item.country_name,
 				country_code: item.country_code,
 				maintenance: item[`maintenance_year_${i}`] || 0
-				
 			};
 		}
-		
+
 		return acc;
 	}, {});
-}
-	$: storeTableData.set(result)
-	console.log("uhmja",result);
+	console.log('result:', result);
+
+	$storeTableData = result;
+	console.log('storeTableData', $storeTableData);}
 </script>
-ddfsfddd
+
 <!-- <div>ddks fsdlfa kdöasfldk ajöfsldk föasd<br /><br />poid fpiogjsp dfiogjp fsgi fdpfgiod</div> -->
-<br>RESULT:
-{JSON.stringify(result)}
+<br />RESULT:
+{JSON.stringify($storeTableData)}
