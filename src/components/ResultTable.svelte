@@ -18,13 +18,10 @@
 	import { Title } from '@carbon/charts/components/index.js';
 	$: table = Object.values($storeTableData);
 
-    // const to scroll to top of view
-	const scrollIntoView = (node) => {
-		node.scrollIntoView();
-	};
+    
 </script>
 
-<h2 style="margin-bottom:30px" use:scrollIntoView>Results</h2>
+<h2 style="margin-bottom:30px">Results</h2>
 <div>
 	<StructuredList condensed>
 		<StructuredListHead>
@@ -60,8 +57,8 @@
 				<StructuredListRow>
 					<StructuredListCell>{values['year_1']['country_name']}</StructuredListCell>
 					<StructuredListCell>Maintenance Fee</StructuredListCell>
-					<StructuredListCell />
-					<StructuredListCell />
+					<StructuredListCell>{values['year_1']['uip_multiselect_country_filing_Lang']}</StructuredListCell>
+					<StructuredListCell>{values['year_1']['uip_complexity']}</StructuredListCell>
 					{#each Object.keys(values) as year}
 						<StructuredListCell>{values[year].maintenance_fee}</StructuredListCell>
 					{/each}
@@ -113,11 +110,11 @@
 				</StructuredListRow>
 				<StructuredListRow>
 					<StructuredListCell />
-					<StructuredListCell>Sum</StructuredListCell>
+					<StructuredListCell head>Sum</StructuredListCell>
 					<StructuredListCell />
 					<StructuredListCell />
 					{#each Object.keys(values) as year}
-						<StructuredListCell>{values[year].sum_fee}</StructuredListCell>
+						<StructuredListCell head>{values[year].sum_fee}</StructuredListCell>
 					{/each}
 				</StructuredListRow>
 			{/each}

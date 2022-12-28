@@ -17,7 +17,7 @@
 
 	// const to scroll to top of view
 	const scrollIntoView = (node) => {
-		node.scrollIntoView();
+		node.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
 	};
 
 	const transformedvalues = Object.values($supaData).map((value) => {
