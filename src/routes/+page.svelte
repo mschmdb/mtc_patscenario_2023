@@ -55,7 +55,7 @@
 </script>
 
 <div class="container m-8">
-	<h1 class="text-2xl">Patscenariopp</h1>
+	<h1 class="text-2xl">Patscenario</h1>
 	
 	{#if $storeShowEdit}
 	<AppForm bind:form />
