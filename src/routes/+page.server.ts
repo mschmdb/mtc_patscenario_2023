@@ -80,7 +80,6 @@ export const actions = {
 			uip_extended_examination,
 			uip_multiselect_country_filing_Lang,
 			uip_complexity,
-			showResults: true,
 		};
 
 	}

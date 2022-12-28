@@ -17,9 +17,14 @@
 	import { options } from '@carbon/charts/configuration.js';
 	import { Title } from '@carbon/charts/components/index.js';
 	$: table = Object.values($storeTableData);
+
+    // const to scroll to top of view
+	const scrollIntoView = (node) => {
+		node.scrollIntoView();
+	};
 </script>
 
-<h2 style="margin-bottom:30px">Results</h2>
+<h2 style="margin-bottom:30px" use:scrollIntoView>Results</h2>
 <div>
 	<StructuredList condensed>
 		<StructuredListHead>
@@ -159,5 +164,4 @@
 			height: '400px'
 		}}
 	/>
-
 </div>

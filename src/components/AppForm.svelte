@@ -3,17 +3,23 @@
 	import { MultiSelect } from 'carbon-components-svelte';
 	import { NumberInput } from 'carbon-components-svelte';
 	import { Button } from 'carbon-components-svelte';
-	import { chosencountries, storeTableData, storeUserCho, supaData } from '../routes/stores.js';
+	import { supaData, storeShowEdit, storeShowResult } from '../routes/stores.js';
 	import { enhance } from '$app/forms';
 	import { Select, SelectItem } from 'carbon-components-svelte';
 
 	export let uip_translation_fee;
 	export let uip_pages;
 	export let form;
-	function showResult () {
-		editForm = false;
-		showResults = true;
+	export let editForm;
+	function toggleShow () {
+		$storeShowEdit = !storeShowResult
 	}
+
+	// const to scroll to top of view
+	const scrollIntoView = (node) => {
+		node.scrollIntoView();
+	};
+
 	const transformedvalues = Object.values($supaData).map((value) => {
 		return { id: value.country_code, text: value.country_name };
 	});
@@ -49,7 +55,7 @@
 		({ update }) =>
 			update({ reset: false })}
 >
-	<h2 style="margin-bottom:30px">Base Config</h2>
+	<h2 style="margin-bottom:30px" use:scrollIntoView>Base Config</h2>
 	<MultiSelect
 		bind:selectedIds={uip_multiselect_country_filing}
 		titleText="First filing in "
@@ -157,7 +163,7 @@
 		kind="secondary"
 		type="submit"
 		style="margin-top:30px; background-color:#890c58"
-		on:click={() => showResult()}>Submit</Button
+		>Submit</Button
 	>
 
 	<br /><br />

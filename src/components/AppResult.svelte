@@ -2,11 +2,12 @@
 	import { fade, fly } from 'svelte/transition';
 	import { LineChart } from '@carbon/charts-svelte';
 	import '@carbon/charts/styles.css';
-	import { storeTableData, storeUserCountries } from '../routes/stores.js';
+	import { storeTableData, storeUserCountries, storeShowEdit } from '../routes/stores.js';
 	import ResultTable from './ResultTable.svelte';
 
 	$: $storeUserCountries, updateTableData();
-
+	$storeShowEdit = false;
+	
 	// Get Fees based on years (i)
 
 	function getFilingFee(i, filingFee) {

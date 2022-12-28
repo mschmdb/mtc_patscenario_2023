@@ -4,26 +4,28 @@
 	import {
 		storeUserCho,
 		supaData,
-		storeUserCountries
+		storeUserCountries,
+		storeShowEdit,
+		storeShowResult
 	} from './stores';
 	import AppResult from '../components/AppResult.svelte';
 	import AppForm from '../components/AppForm.svelte';
 	import type { ActionData, PageData } from './$types';
 	import { CodeSigningService } from 'carbon-icons-svelte';
-	function showEdit () {
-		editForm = true;
-		showResults = false;
+
+	//Toggle between Edit and Result
+	function toggleShowEdit () {
+		$storeShowEdit = true
+		form.success = false
 	}
-	function showResult () {
-		editForm = false;
-		showResults = true;
-	}
+	
+	
 	//Fetch Data
 	export let data;
 	export let form: ActionData;
 	$: storeUserCho.set(form?.userChosen);
 	$: supaData.set(data);
-	$: editForm = true;
+	$: $storeShowEdit = true;
 	$: showResults = false;
 	console.log($storeUserCho);
 	console.log(data);
@@ -55,14 +57,14 @@
 <div class="container m-8">
 	<h1 class="text-2xl">Patscenariopp</h1>
 	
-	{#if editForm === true}
+	{#if $storeShowEdit}
 	<AppForm bind:form />
-	edit: {editForm}<br>
-	result: {showResults}
+	
 	{/if}
-	{#if form}
+	{#if form?.success}
 		<AppResult />
 		<br />
-		<Button on:click={() => showEdit()}>Edit Results</Button>
+		<Button on:click={() => toggleShowEdit()}>Edit Results</Button>
+		
 	{/if}
 </div>

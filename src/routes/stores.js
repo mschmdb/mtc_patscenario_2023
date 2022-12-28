@@ -5,6 +5,8 @@ export const storeTableData = writable([]);
 export const storeUserVal = writable(0);
 export const storeUserCho = writable([]);
 export const supaData = writable([]);
+export const storeShowEdit = writable();
+export const storeShowResult = writable();
 export const storeUserCountries = writable([]);
 //We calculate the stored Chart Data
 export const storeChartData = derived([storeTableData], ([storeTableData]) => {
