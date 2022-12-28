@@ -10,7 +10,10 @@
 	export let uip_translation_fee;
 	export let uip_pages;
 	export let form;
-
+	function showResult () {
+		editForm = false;
+		showResults = true;
+	}
 	const transformedvalues = Object.values($supaData).map((value) => {
 		return { id: value.country_code, text: value.country_name };
 	});
@@ -154,7 +157,7 @@
 		kind="secondary"
 		type="submit"
 		style="margin-top:30px; background-color:#890c58"
-		on:click={() => ((editForm = true), (showResults = true))}>Submit</Button
+		on:click={() => showResult()}>Submit</Button
 	>
 
 	<br /><br />

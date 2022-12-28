@@ -10,7 +10,14 @@
 	import AppForm from '../components/AppForm.svelte';
 	import type { ActionData, PageData } from './$types';
 	import { CodeSigningService } from 'carbon-icons-svelte';
-
+	function showEdit () {
+		editForm = true;
+		showResults = false;
+	}
+	function showResult () {
+		editForm = false;
+		showResults = true;
+	}
 	//Fetch Data
 	export let data;
 	export let form: ActionData;
@@ -47,19 +54,15 @@
 
 <div class="container m-8">
 	<h1 class="text-2xl">Patscenariopp</h1>
+	
+	{#if editForm === true}
 	<AppForm bind:form />
-	{#if editForm}
-		<!-- {JSON.stringify(form)}<br> -->
-		<!-- showresults: {showResults}<br /> -->
-		<!-- storeusercountries: {JSON.stringify($storeUserCountries)}<br /> -->
-		<!-- {JSON.stringify($storeUserCho)}<br /> -->
-		<!-- UIP PAGES: {($storeUserCho || {}).uip_pages}<br /> -->
-		<!-- Filing: {filingCountries} -->
-		<!-- combined data: {JSON.stringify(filteredCountriesCombined)} -->
+	edit: {editForm}<br>
+	result: {showResults}
 	{/if}
-	{#if $storeUserCho}
+	{#if form}
 		<AppResult />
 		<br />
-		<Button on:click={() => ((editForm = true), (showResults = false))}>Edit Results</Button>
+		<Button on:click={() => showEdit()}>Edit Results</Button>
 	{/if}
 </div>

@@ -1,13 +1,5 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
-	import {
-		StructuredList,
-		StructuredListHead,
-		StructuredListRow,
-		StructuredListCell,
-		StructuredListBody
-	} from 'carbon-components-svelte';
-
 	import { LineChart } from '@carbon/charts-svelte';
 	import '@carbon/charts/styles.css';
 	import { storeTableData, storeUserCountries } from '../routes/stores.js';
