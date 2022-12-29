@@ -110,7 +110,7 @@
 				</StructuredListRow>
 				<StructuredListRow>
 					<StructuredListCell />
-					<StructuredListCell head>Sum</StructuredListCell>
+					<StructuredListCell>Sum</StructuredListCell>
 					<StructuredListCell />
 					<StructuredListCell />
 					{#each Object.keys(values) as year}
