@@ -27,14 +27,15 @@
 	$: supaData.set(data);
 	$: $storeShowEdit = true;
 	$: showResults = false;
-	console.log($storeUserCho);
-	console.log(data);
+	
+	// console.log(data);
 	//Convert Data
 	$: values = Object.values(data);
-	// console.log(values);
-	let countries = values;
-	let userval = '';
-	//Show Results?
+	
+	// can be removed:
+	// let countries = values;
+	// let userval = '';
+
 
 	// Split the uip_multiselect_country_filing property into an array of country codes
 	$: dataArray = Object.values(data);
@@ -55,7 +56,7 @@
 </script>
 
 <div class="container m-8">
-	<h1 class="text-2xl">Patscenarioü</h1>
+	<h1 class="text-2xl">Patscenario</h1>
 	
 	{#if $storeShowEdit}
 	<AppForm bind:form />

@@ -48,6 +48,11 @@ export const storeChartData = derived([storeTableData], ([storeTableData]) => {
 					group: feeObject.country_code + ' - Examination Fee',
 					key: feeObject.year,
 					value: feeObject.examination_fee
+				},
+				{
+					group: feeObject.country_code + ' - Translation Fee',
+					key: feeObject.year,
+					value: feeObject.translation_fee
 				}
 			];
 		});
