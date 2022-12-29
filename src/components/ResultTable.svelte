@@ -16,6 +16,8 @@
 	import { storeTableData, storeChartData } from '../routes/stores.js';
 	import { options } from '@carbon/charts/configuration.js';
 	import { Title } from '@carbon/charts/components/index.js';
+
+	//needs to stay 
 	$: table = Object.values($storeTableData);
 
     
