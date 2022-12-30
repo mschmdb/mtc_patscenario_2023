@@ -31,7 +31,7 @@
 	$: editForm = true;
 	// Input fields Config
 	$: uip_multiselect_country_filing = 'DE, CH';
-	$: uip_multiselect_country_filing_Lang = 'DE';
+	$: uip_multiselect_country_filing_Lang = '';
 	$: uip_multiselect_country_filing_subsequent = '';
 	$: selectedIds = '';
 	$: uip_translation_fee = 0.15;
@@ -46,6 +46,8 @@
 	$: uip_extended_examination = 1250;
 	$: uip_complexity = 'quick';
 	$: dynamic_table_rows = '';
+	$: uip_multiselect_country_filing_Lang_value = []
+	$: uip_multiselect_country_filing_Lang_display = form?.uip_multiselect_country_filing_Lang_value ?? uip_multiselect_country_filing_Lang
 </script>
 
 <form
@@ -77,7 +79,8 @@
 		titleText="Languages in which the first filing is available"
 		label=""
 		name="uip_multiselect_country_filing_Lang"
-		required="true"
+		required
+		placeholder="DE"
 		items={[
 			{ id: 'DE', text: 'German' },
 			{ id: 'EN', text: 'English' },
@@ -89,11 +92,16 @@
 		name="uip_multiselect_country_filing_Lang_value"
 		value={uip_multiselect_country_filing_Lang}
 	/>
+	<input
+		type="hidden"
+		name="uip_multiselect_country_filing_Lang_value_display"
+		value={uip_multiselect_country_filing_Lang_display}
+	/>
 
 	<NumberInput
 		name="uip_translation_fee"
 		label="Translation Fees in € / Word"
-		bind:value={uip_translation_fee}
+		value={form?.uip_translation_fee ?? uip_translation_fee}
 		step={0.01}
 	/>
 

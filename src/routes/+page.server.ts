@@ -43,6 +43,7 @@ export const actions = {
 		const uip_normal_examination = data.get('uip_normal_examination');
 		const uip_extended_examination = data.get('uip_extended_examination');
 		const uip_multiselect_country_filing_Lang = data.get('uip_multiselect_country_filing_Lang_value');
+		const uip_multiselect_country_filing_Lang_value = data.get('uip_multiselect_country_filing_Lang_value');
 		const uip_complexity = data.get('uip_complexity');
 
 		const userChosen = {
@@ -59,6 +60,7 @@ export const actions = {
 			uip_normal_examination,
 			uip_extended_examination,
 			uip_multiselect_country_filing_Lang,
+			uip_multiselect_country_filing_Lang_value,
 			uip_complexity
 		}
 
@@ -79,6 +81,7 @@ export const actions = {
 			uip_normal_examination,
 			uip_extended_examination,
 			uip_multiselect_country_filing_Lang,
+			uip_multiselect_country_filing_Lang_value,
 			uip_complexity,
 		};
 
